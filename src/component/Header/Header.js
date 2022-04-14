@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import useFirebase from '../../hooks/useFirebase';
 
 const Header = () => {
-    const { user } = useFirebase();
+    const { user, handleSignOut } = useFirebase();
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
-                    <a className="navbar-brand" href="#">Navbar</a>
+                    <span className="navbar-brand">Navbar</span>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -27,11 +27,11 @@ const Header = () => {
                             <li className="nav-item">
                                 <Link to='/register' className='nav-link' >Register</Link>
                             </li>
-
+                            <span>{user?.displayName && user.displayName}</span>
                             {
-                                user.uid
+                                user?.uid
                                     ?
-                                    <button className='btn btn-info'>Sign Out</button>
+                                    <button onClick={handleSignOut} className='btn btn-info'>Sign Out</button>
                                     :
                                     <li className="nav-item">
                                         <Link to='/login' className='nav-link' >Login</Link>

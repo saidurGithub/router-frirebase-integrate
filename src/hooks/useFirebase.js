@@ -33,6 +33,7 @@ const useFirebase = () => {
     return {
         user,
         signInWithGoogle,
+        handleSignOut
     }
 }
 export default useFirebase;
